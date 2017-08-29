@@ -1,0 +1,324 @@
+﻿@using DLTT.WIILOVE.Biz.Utils
+@using DLTT.WIILOVE.Data.Model
+@using DLTT.WIILOVE.Data.Model.Param
+
+<!DOCTYPE html>
+<!-- html -->
+<html>
+<!-- head -->
+<head>
+    <title>@ViewBag.Title | Wiilove - DLTT</title>
+    <link href="~/Styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
+    <link href="~/Styles/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /><!-- Fontawesome-CSS -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/js/Loading/modernizr.js"></script>
+    <script src="~/scripts/js/Loading/loadImg.js"></script>
+
+    <link href="~/Styles/css/StyleProfile.css" rel="stylesheet" />
+    <link href="~/Styles/css/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Styles/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Styles/css/style.css" rel="stylesheet" />
+    <link href="~/Styles/css/searchStyle.css" rel="stylesheet" />
+    <link href="~/Styles/css/mesenger.css" rel="stylesheet" />
+    <!--meta data-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Love and Date, tien nguyen, Duy Long Tien Thuan" />
+    @RenderSection("Styles", required: false)
+    <script type='text/javascript'>
+
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");
+        });
+
+    </script>
+
+
+</head>
+<!-- //head -->
+<!-- body -->
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="se-pre-con"></div>
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="@Url.Action("Index","Home")" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>L</b>ove</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Wii</b>Love</span>
+        </a>
+
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <div class="col-md-6" style="margin-top: 8px;">
+                <div class="input-group" id="adv-search">
+                    <input type="text" class="form-control" id="fTextSearch" name="TextSearch" placeholder="Bạn muốn tìm ai?" />
+                    <div class="input-group-btn">
+                        <div class="btn-group" role="group">
+                            <div class="dropdown dropdown-lg">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <form class="form-horizontal" action="@Url.Action("Search","Search")" method="post" role="form">
+                                        <div class="form-group">
+                                            <label>Tên</label>
+                                            <input class="form-control" id="TextSearch" name="TextSearch" type="text" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Giới tính</label>
+                                            <div style="padding-left: 20px">
+                                                <label class="radio-inline">
+                                                    <input type="radio" checked="checked" name="Gender" id="inlineRadio1" value="1"> Nam
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="Gender" id="inlineRadio2" value="0"> Nữ
+                                                </label>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-lg-3">
+                                                <label>Tuổi từ</label>
+                                                <select class="form-control" name="FormAge" id="FormAge">
+                                                    @{
+                                                        for (var i = 18; i < 99; i++)
+                                                        {
+                                                            <option value="@i">@i</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label>đến</label>
+                                                <select class="form-control" name="ToAge" id="ToAge">
+                                                    @{
+                                                        for (var i = 18; i < 99; i++)
+                                                        {
+                                                            <option value="@i">@i</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-lg-6">
+                                                <label>Thành phố</label>
+                                                <select class="form-control" id="City" name="City">
+                                                    <option value=""></option>
+                                                    @{
+                                                        foreach (var item in (List<SystemParameter>)ViewBag.view.Citys)
+                                                        {
+                                                            <option value="@item.Id">@item.Name</option>
+                                                        }
+                                                    }
+
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>Tôn giáo</label>
+                                                <select class="form-control" name="Religion" id="Religion">
+                                                    <option value=""></option>
+                                                    @{
+                                                        foreach (var item in (List<SystemParameter>)ViewBag.view.Religions)
+                                                        {
+                                                            <option value="@item.Id">@item.Name</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <button type="submit" style="float: right; margin-right: 30px;" class="btn btn-primary">Tìm kiếm</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <a id="findText" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-comments-o"></i>
+                            <span class="label label-danger">@ViewBag.view.MessageCount</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Bạn có @ViewBag.view.MessageCount tin nhắn mới</li>
+
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    @{
+                                        if (ViewBag.view.NotifiMessages != null)
+                                        {
+                                            foreach (var item in (List<MessagesDetail>)ViewBag.view.NotifiMessages)
+                                            {
+                                                <li>
+                                                    <!-- start message -->
+                                                    <a href="~/Messeger/t/@item.MessagesId">
+                                                        <div class="pull-left">
+                                                            <img src="~/Images/Uploads/@item.AvatarUrl" class="img-circle" alt="Image">
+                                                        </div>
+                                                        <h4>
+                                                            @item.Name
+                                                        </h4>
+                                                        <p>@item.TextMessage</p>
+
+                                                    </a>
+
+                                                </li>
+                                            }
+                                        }
+                                       
+                                    }
+
+                                    <!-- end message -->
+
+                                </ul>
+
+                            </li>
+                            <li class="~/Messeger/Index"><a href="#">Xem tất cả tin nhắn</a></li>
+                        </ul>
+                    </li>
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="SeeIsRead">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning" id="notifNum">@ViewBag.view.NotifCount</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header" id="textNotifnum">Bạn có @ViewBag.view.NotifCount thông báo chưa đọc</li>
+                            <li>
+
+                                <ul class="menu" id="notif">
+                                    @*list thông báo*@
+                                    @{
+                                        foreach (var item in (List<UserDeatilBase>)ViewBag.view.UserDeatilBases)
+                                        {
+                                            <li>
+                                                <!-- start message -->
+                                                <a href="~/Profile/Index/@item.AccountId">
+                                                    <div class="pull-left">
+                                                        <img src="~/Images/Uploads/@item.AvatarUrl" class="img-circle" alt="@item.FirstName">
+                                                    </div>
+                                                    <h4>
+                                                        @item.FullName
+                                                    </h4>
+                                                    <p>Đã gửi yêu cầu kết bạn đên bạn</p>
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+
+                            </li>
+                            <li class="footer"><a href="#">Xem tất cả thông báo</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="~/Images/Uploads/@ViewBag.view.AvatarUrl" class="user-image" alt="User Image">
+                            <span class="hidden-xs">@ViewBag.view.FullName</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+
+                                <img src="~/Images/Uploads/@ViewBag.view.AvatarUrl" class="img-circle" alt="User Image">
+                                <p style="font-size: 25px;">
+                                    @ViewBag.view.FullName
+                                </p>
+                                
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="~/Messeger/Index">Tin nhắn</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="@Url.Action("Friends","User")">Bạn bè</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Cài đặt</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="~/Profile/Index/@ViewBag.view.AccountId" class="btn btn-default btn-flat">Trang cá nhân</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="~/Account/Logout" class="btn btn-default btn-flat">Đăng xuất</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        @{
+                            if (ViewBag.view.VipType == Util.MemberVip.NotVip)
+                            {
+                                <a href="@Url.Action("Product", "Payment")" class="btn-warning"><i class="fa fa-shopping-cart"> Mua VIP</i></a>
+                            }
+                            else
+                            {
+                                <a class="btn-warning"><i class="fa fa-trophy" aria-hidden="true"></i> VIP</a>
+                            }
+                        }
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    @{
+        if (!string.IsNullOrWhiteSpace(ViewBag.view.MessageNotifition))
+        {
+            <div style="padding: 20px 50px 0 50px;">
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <strong>Thông báo!</strong> @ViewBag.view.MessageNotifition
+                </div>
+            </div>
+
+        }
+    }
+
+
+
+
+    @RenderBody()
+
+
+
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    <script src="~/scripts/js/app.min.js"></script>
+    <script src="~/scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <!-- //for smooth scrolling -->
+    <script>
+        var chat = $.connection.hubManagement;
+        var AccountId = '@ViewBag.view.AccountId';
+    </script>
+    @RenderSection("scripts", required: false)
+    <input id="hdId" type="hidden" />
+</body>
+<!-- //body -->
+</html>
+<!-- //html -->

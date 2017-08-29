@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Nạp tiền";
+    Layout = "~/Views/Shares/_LayoutUser.cshtml";
+}
+@section Styles{
+<link href="~/Styles/css/donate.css" rel="stylesheet" />
+}
+
+<div class="mid" style="margin: 30px 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="stars" class="btn btn-warning" href="#tab1" data-toggle="tab">
+                            <br>
+                            <i class="fa fa-star fa-2x"></i>
+                            <div class="hidden-xs">THẺ ĐIỆN THOẠI</div>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="favorites" class="btn btn-danger" href="#tab2" data-toggle="tab">
+                            <br>
+                            <i class="fa fa-heart fa-2x"></i>
+                            <div class="hidden-xs">THẺ TÍN DỤNG</div>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="following" class="btn btn-primary" href="#tab3" data-toggle="tab">
+                            <br>
+                            <i class="fa fa-sign-in fa-2x"></i>
+                            <div class="hidden-xs">PayPal</div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="well" style="background: #FAFAFA;">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <form action="@Url.Action("Donate","Donate")" method="post" class="login-form">
+                                <div class="form-group form-md-radios">
+                                    <div class="md-radio-inline">
+                                    </div>
+                                </div><table class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-12" align="center" style="padding: 5% 0;">
+                                    <tbody>
+                                    <tr>
+                                        <td><img src="~/Images/mobifone.png" class="img-responsive" style="margin-top: 10px; padding-right: 5px"></td>
+                                        <td><img src="~/Images/vinaphone.png" class="img-responsive"></td>
+                                        <td><img src="~/Images/viettel.png" class="img-responsive"></td>
+                                        <td><img src="~/Images/gate.png" class="img-responsive"></td>
+                                        <td><img src="~/Images/vtc.png" class="img-responsive"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="md-radio has-warning">
+                                                <input type="radio" id="radio14" name="select_method" value="VMS" class="md-radiobtn">
+                                                <label for="radio14">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>Mobi
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="md-radio has-warning">
+                                                <input type="radio" id="radio15" name="select_method" value="VNP" class="md-radiobtn" checked="">
+                                                <label for="radio15">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>Vina
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="md-radio has-warning" style="margin-left: 15%;">
+                                                <input type="radio" id="radio16" name="select_method" value="VIETTEL" class="md-radiobtn" checked="">
+                                                <label for="radio16">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>Viettel
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="md-radio has-warning" style="margin-left: 10%" ;="">
+                                                <input type="radio" id="radio17" name="select_method" value="GATE" class="md-radiobtn">
+                                                <label for="radio17">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>Gate
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="md-radio has-warning" style="margin-left: 10%;">
+                                                <input type="radio" id="radio18" name="select_method" value="VCOIN" class="md-radiobtn">
+                                                <label for="radio18">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>Vcoin
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                                <br><br><br>
+                                <div class="row" id="cennter">
+                                      
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group form-md-line-input form-md-floating-label has-warning">
+                                            <input type="text" class="form-control" id="seriNumber" name="seriNumber">
+                                            <label for="seriNumber">SỐ SERI</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group form-md-line-input form-md-floating-label has-warning">
+                                            <input type="text" class="form-control" id="code" name="code">
+                                            <label for="code">MÃ SỐ THẺ</label>
+                                        </div>
+                                    </div>                                     
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <center><input class="btn yellow" type="submit" name="NLNapThe" value="NẠP NGAY" style="font-weight: bold; padding: 15px 20% 15px 20%;"></center>
+                                    </div>
+                                    <br>
+                                        
+                                </div>
+                            </form>
+                        </div>
+                           
+                    </div>
+                            
+                </div>
+            </div>
+                  
+        </div>
+    </div>
+</div>
+    
+

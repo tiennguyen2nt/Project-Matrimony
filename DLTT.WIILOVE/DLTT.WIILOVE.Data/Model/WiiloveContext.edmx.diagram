@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="885a99f1da97411288307d1b732666cd" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="wiiloveModel.Account" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="wiiloveModel.Deathnote" Width="1.5" PointX="3" PointY="23" />
+        <EntityTypeShape EntityType="wiiloveModel.History" Width="1.5" PointX="3" PointY="20.125" />
+        <EntityTypeShape EntityType="wiiloveModel.Message" Width="1.5" PointX="5.75" PointY="2.25" />
+        <EntityTypeShape EntityType="wiiloveModel.MessagesDetail" Width="1.5" PointX="8" PointY="2.375" />
+        <EntityTypeShape EntityType="wiiloveModel.Notification" Width="1.5" PointX="5.75" PointY="6.125" />
+        <EntityTypeShape EntityType="wiiloveModel.Product" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="wiiloveModel.ProfileTracking" Width="1.5" PointX="3" PointY="17" />
+        <EntityTypeShape EntityType="wiiloveModel.SystemParameter" Width="1.5" PointX="7.75" PointY="6.125" />
+        <EntityTypeShape EntityType="wiiloveModel.UserDetail" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="wiiloveModel.UserOnline" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="wiiloveModel.UserRanking" Width="1.5" PointX="6" PointY="12" />
+        <EntityTypeShape EntityType="wiiloveModel.UserRelationship" Width="1.5" PointX="3" PointY="5" />
+        <AssociationConnector Association="wiiloveModel.FK_Deathnote_Account" />
+        <AssociationConnector Association="wiiloveModel.FK_History_Account" />
+        <AssociationConnector Association="wiiloveModel.FK_ProfileTracking_Account" />
+        <AssociationConnector Association="wiiloveModel.FK_UserDetails_Account" />
+        <AssociationConnector Association="wiiloveModel.FK_UserRanking_Account" />
+        <AssociationConnector Association="wiiloveModel.FK_UserRelationship_Account1" />
+        <AssociationConnector Association="wiiloveModel.FK_UserRelationship_Account2" />
+        <AssociationConnector Association="wiiloveModel.FK_MessagesDetail_Messages" />
+        <AssociationConnector Association="wiiloveModel.FK_UserRanking_Product" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

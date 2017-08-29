@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "NewFeed";
+    ViewBag.listUser = Model;
+    Layout = "~/Views/Shares/_LayoutUser.cshtml";
+}
+<div class="container" style="margin-top: 20px; ">
+    <div class="col-md-12 profiles-list-agileits">
+        <!--Horizontal Tab-->
+        <div id="parentHorizontalTab">
+            <div class="">
+                <div style=" margin-bottom:10px;">
+                    <label>Người phù hợp được đề xuất</label>
+                    <button id="btchange-info" style="border-radius:10px;margin-left:10px; background-color:ornsilk;">Đổi thông tin người phù hợp</button>
+                    <button id="btchange-suitable" style=" border-radius:10px;margin-left:10px; background-color:azure;">Xem tất cả nhưng người phù hợp</button>
+                </div>
+
+            </div>
+            <div class="resp-tabs-container">
+                <div>
+                    <div id="list-profile">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script src="~/scripts/SignalR/HomeHub.js"></script>
+    <script src="~/scripts/SignalR/NotifitionFunction.js"></script>
+    <script>
+        function AddUser(id, user) {
+            var online = '';
+            var age = '';
+            var gender = '';
+            var address = '';
+            if (user.Age != null)
+                age = user.Age;
+            if (user.City != null)
+                address = user.City;
+            if (user.Gender != null)
+                gender = user.Gender;
+            if (user.Country != null)
+                address += ' <span>' + user.Country + '</span>';
+            if (user.ConnectionId == null) {
+                online = 'class="uoffline"';
+            } else {
+                online = 'class="uonline"';
+            }
+
+            var code = "";
+            code = $('<div class="col-md-4 one-w3-profile" id="userParID_' + user.AccountId + '">' +
+                '<div class="profile-details" id="userpv_' + user.AccountId + '">' +
+                '<h5 ' + online + '></h5>' +
+                '<a href="/Profile/Index/' + user.AccountId + '"><img src="/Images/Uploads/' + user.AvatarUrl + '" class="prf-img img-responsive" style="height:170px;" alt="profile image" /></a>' +
+                ' <div class="w3-prfr">' +
+                ' <h4 style="margin-top: 10px;"><a href="/Profile/Index/' + user.AccountId + '">' + user.FullName + '</a></h4>' +
+                ' <p>Tuổi: ' + age + '</p>' +
+                '<p>Giới tính: ' + gender + '</p>' +
+                '<p>Thành phố: ' + address + '</p>' +
+
+
+                ' <div  style="margin-top: 10px;" id="btnFriend' + user.AccountId + '">' +
+
+                '<button  class="btn btn-default btn-xs" id="addfriend' + user.AccountId + '"><i class="fa fa-plus" aria-hidden="true"></i> Thêm bạn</button>' +
+
+                '</div>' +
+
+                ' </div>' +
+
+                ' <div class="clearfix"></div>' +
+
+                '</div>' +
+                ' </div>');
+            var $code = $(code);
+           var addI = '1';
+            $code.find('#addfriend' + user.AccountId).click(function () {
+                if (addI === '1') {
+                    $code.find('#addfriend' + user.AccountId).text(" Hủy yêu cầu");
+                    $code.find('#addfriend' + user.AccountId)
+                        .prepend('<i class="fa fa-paper-plane-o" aria-hidden="true"></i>');
+                    chat.server.addFriend( user.AccountId,id);
+                    addI = '2';
+                } else {
+                    $code.find('#addfriend' + user.AccountId).text(" Thêm bạn");
+                    $code.find('#addfriend' + user.AccountId)
+                        .prepend('<i class="fa fa-plus" aria-hidden="true"></i>');
+                    chat.server.unConfirm(user.AccountId,id);
+                    addI = '1';
+                }
+            });
+            $("#list-profile").append(code);
+        }
+
+    </script>
+}

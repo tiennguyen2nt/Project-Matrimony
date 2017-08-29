@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shares/_LayoutUser.cshtml";
+}
+@section Styles
+{
+    
+<link href="~/Styles/css/404notfound.css" rel="stylesheet" />
+}
+<div class="mid">
+    <h2 class="item-acc" style="color: red; font-size: 40px;"> Lỗi </h2>
+    <p class="item-font">@ViewBag.view.MessageNotifition</p>
+
+    <div class="img404">
+        <div class="container">
+            <div class="row">
+                <img class="img-404" src="~/Images/404img.png">
+            </div>
+        </div>
+        <div class="back-linkss">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href=""><p class="back-link">Quay lại trước</p></a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="@Url.Action("NewFeed","Home")"><p class="back-links">Đi tới trang chủ</p></a>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

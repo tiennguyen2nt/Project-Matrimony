@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="wiiloveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="26" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="100" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="Deleted" Type="int" />
+  </EntityType>
+  <EntityType Name="Deathnote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="bigint" />
+    <Property Name="DeathType" Type="int" />
+    <Property Name="DayOfDeath" Type="date" />
+    <Property Name="Duration" Type="int" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="bigint" />
+    <Property Name="RecordDate" Type="datetime" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromId" Type="bigint" />
+    <Property Name="ToId" Type="bigint" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="AvatarURL" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="MessagesDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MessagesId" Type="bigint" />
+    <Property Name="SenderId" Type="bigint" />
+    <Property Name="TextMessage" Type="ntext" />
+    <Property Name="SendTime" Type="datetime" />
+    <Property Name="Type" Type="int" />
+    <Property Name="IsRead" Type="bit" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FormId" Type="bigint" />
+    <Property Name="ToId" Type="bigint" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Desccription" Type="nvarchar" MaxLength="200" />
+    <Property Name="isRead" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="ExpicyDate" Type="int" />
+    <Property Name="Price" Type="float" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Deleted" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProfileTracking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="bigint" />
+    <Property Name="VisiterID" Type="bigint" />
+    <Property Name="VisitSrc" Type="varchar" MaxLength="20" />
+    <Property Name="VisitType" Type="int" />
+    <Property Name="VisitReason" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="SystemParameter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Code" Type="nvarchar" MaxLength="20" />
+    <Property Name="FeatureID" Type="int" />
+    <Property Name="Deleted" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="bigint" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="Gender" Type="int" />
+    <Property Name="Weight" Type="float" />
+    <Property Name="Height" Type="float" />
+    <Property Name="AvatarURL" Type="nvarchar" MaxLength="200" />
+    <Property Name="About" Type="ntext" />
+    <Property Name="MaritalStatus" Type="int" />
+    <Property Name="CurrentCountryId" Type="int" />
+    <Property Name="CurrentCityId" Type="int" />
+    <Property Name="MotherTongueId" Type="int" />
+    <Property Name="ReligionId" Type="int" />
+    <Property Name="CasteId" Type="int" />
+    <Property Name="SocialNetworkURL" Type="varchar" MaxLength="204" />
+    <Property Name="WebsiteURL" Type="nvarchar" MaxLength="102" />
+  </EntityType>
+  <EntityType Name="UserOnline">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConnectionId" Type="nvarchar" MaxLength="100" />
+    <Property Name="AccountId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="UserRanking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="bigint" />
+    <Property Name="DonatedAmount" Type="float" />
+    <Property Name="Rank" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="BuyDate" Type="datetime" />
+    <Property Name="ExpiryDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserRelationship">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountId" Type="bigint" />
+    <Property Name="TargetId" Type="bigint" />
+    <Property Name="Type" Type="int" />
+  </EntityType>
+  <Association Name="FK_Deathnote_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Deathnote" Type="Self.Deathnote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Deathnote">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessagesDetail_Messages">
+    <End Role="Messages" Type="Self.Messages" Multiplicity="0..1" />
+    <End Role="MessagesDetail" Type="Self.MessagesDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Messages">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MessagesDetail">
+        <PropertyRef Name="MessagesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfileTracking_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="ProfileTracking" Type="Self.ProfileTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProfileTracking">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetails_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRanking_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="UserRanking" Type="Self.UserRanking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRanking">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRanking_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="UserRanking" Type="Self.UserRanking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRanking">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRelationship_Account1">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="UserRelationship" Type="Self.UserRelationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRelationship">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRelationship_Account2">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="UserRelationship" Type="Self.UserRelationship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRelationship">
+        <PropertyRef Name="TargetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="wiiloveModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Deathnote" EntityType="Self.Deathnote" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessagesDetail" EntityType="Self.MessagesDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProfileTracking" EntityType="Self.ProfileTracking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemParameter" EntityType="Self.SystemParameter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserOnline" EntityType="Self.UserOnline" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRanking" EntityType="Self.UserRanking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRelationship" EntityType="Self.UserRelationship" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Deathnote_Account" Association="Self.FK_Deathnote_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Deathnote" EntitySet="Deathnote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Account" Association="Self.FK_History_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="History" EntitySet="History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessagesDetail_Messages" Association="Self.FK_MessagesDetail_Messages">
+      <End Role="Messages" EntitySet="Messages" />
+      <End Role="MessagesDetail" EntitySet="MessagesDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfileTracking_Account" Association="Self.FK_ProfileTracking_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="ProfileTracking" EntitySet="ProfileTracking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetails_Account" Association="Self.FK_UserDetails_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRanking_Account" Association="Self.FK_UserRanking_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="UserRanking" EntitySet="UserRanking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRanking_Product" Association="Self.FK_UserRanking_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="UserRanking" EntitySet="UserRanking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRelationship_Account1" Association="Self.FK_UserRelationship_Account1">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="UserRelationship" EntitySet="UserRelationship" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRelationship_Account2" Association="Self.FK_UserRelationship_Account2">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="UserRelationship" EntitySet="UserRelationship" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

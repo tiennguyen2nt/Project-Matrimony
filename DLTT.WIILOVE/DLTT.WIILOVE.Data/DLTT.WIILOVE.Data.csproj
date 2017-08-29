@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E285139-02A4-4FCD-91FD-AA16808AFFD3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DLTT.WIILOVE.Data</RootNamespace>
+    <AssemblyName>DLTT.WIILOVE.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dao\Accounts\AccountDao.cs" />
+    <Compile Include="Dao\Accounts\RelationshipDao.cs" />
+    <Compile Include="Dao\Accounts\UserOnlineDao.cs" />
+    <Compile Include="Dao\Messages\MessageDao.cs" />
+    <Compile Include="Dao\Messages\MessageDetailDao.cs" />
+    <Compile Include="Dao\Payments\ProductDao.cs" />
+    <Compile Include="Dao\Payments\UserRankingDao.cs" />
+    <Compile Include="Dao\SystemParameters\NotificationDao.cs" />
+    <Compile Include="Dao\SystemParameters\SystemParameterDao.cs" />
+    <Compile Include="Dao\UserDetails\UserDetailDao.cs" />
+    <Compile Include="Model\Account.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Deathnote.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\History.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Message.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MessagesDetail.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Notification.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Param\MessageDetailParam.cs" />
+    <Compile Include="Model\Param\SearchParam.cs" />
+    <Compile Include="Model\Param\User.cs" />
+    <Compile Include="Model\Param\UserDeatilBase.cs" />
+    <Compile Include="Model\Param\ViewParam.cs" />
+    <Compile Include="Model\Product.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ProfileTracking.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SystemParameter.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserDetail.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserOnline.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserRanking.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserRelationship.cs">
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WiiloveContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WiiloveContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WiiloveContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WiiloveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WiiloveContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WiiloveContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Model\WiiloveContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WiiloveContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\WiiloveContext.edmx.diagram">
+      <DependentUpon>WiiloveContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\WiiloveContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WiiloveContext.edmx</DependentUpon>
+      <LastGenOutput>WiiloveContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\WiiloveContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WiiloveContext.edmx</DependentUpon>
+      <LastGenOutput>WiiloveContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

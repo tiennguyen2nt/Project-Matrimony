@@ -1,0 +1,336 @@
+﻿@model DLTT.WIILOVE.Models.UserParam
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shares/_LayoutGuest.cshtml";
+}
+<header class="main-header">
+    <!-- Logo -->
+    <a href="@Url.Action("Index","Home")" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>L</b>ove</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Wii</b>Love</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <li>
+                    <a data-toggle="modal" href="~/Account/Login" data-target="#myModal"><i class="fa fa-sign-in"> Đăng nhập</i></a>
+                </li>
+                <li style="width: 90px;">
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<script src="~/scripts/js/Validate/Register.js"></script>
+<div class="w3layouts-banner" id="home">
+    <div class="container">
+        <div class="clearfix"></div>
+        <div class="agileits-register">
+            <h3>Đăng kí ngay!</h3>
+            <form id="formValidator" action="@Url.Action("Register", "Account" )" role="form" method="post">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" placeholder="Tên" id="FirstName" name="FirstName" class="form-control" required>
+                        @Html.ValidationMessageFor(model => model.User.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group  col-md-6">
+                        <input type="text" placeholder="Họ" id="LastName" name="LastName" class="form-control" required>
+                        @Html.ValidationMessageFor(model => model.User.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="EmailOrPhone" name="EmailOrPhone" placeholder="Email hoặc số điện thoại" required>
+                    @Html.ValidationMessageFor(model => model.User.EmailOrPhone, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Mật khẩu" required>
+                    @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="RetypePassword" name="RetypePassword" placeholder="Nhập lại mật khẩu" required>
+                    @Html.ValidationMessageFor(model => model.User.RetypePassword, "", new { @class = "text-danger" })
+                </div>
+                <label style="font-style: normal;">Ngày sinh</label>
+                <div class="form-group row">
+                    <div class="col-lg-3">
+                        <select class="form-control" id="Day" name="Day">
+                            @for (var i = 1; i < 32; i++)
+                            {
+                                <option value="@i">@i</option>
+
+                            }
+
+                        </select>
+                        @Html.ValidationMessageFor(model => model.User.Day, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-4">
+                        <select class="form-control" id="Month" name="Month">
+                            @for (var i = 1; i < 13; i++)
+                            {
+                                <option value="@i">Tháng @i</option>
+
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.User.Month, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control" name="Year" id="Year">
+                            @{
+                                var year = DateTime.Now.Year - 18;
+                            }
+                            @for (var i = year; i > year - 100; i--)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.User.Year, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="Gender" id="optionsRadios1" value="1" checked>
+                                Nam
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="Gender" id="optionsRadios2" value="0">
+                                Nữ
+                            </label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.User.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="w3-agree">
+                    <label>
+                        <input type="checkbox" id="Terms" name="Terms" value="true">
+                        Tôi đã đọc và đồng ý với <a href="terms.html">Điều khoản và Điều kiện</a>
+                    </label>
+                </div>
+                <input type="submit" style="margin-top:0px; margin-bottom:10px;" value="Đăng kí" />
+                <div class="clearfix"> </div>
+                <div class="w3ls-login" style="text-align: center;">
+                    Bạn đã là thành viên?
+                    <a data-toggle="modal" href="@Url.Action("Login", "Account")" data-target="#myModal">Đăng nhập</a>
+                </div>
+            </form>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                </div> <!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div> <!-- /.modal -->
+        <!-- //Modal -->
+    </div>
+</div>
+
+
+@*<div class="container con-search">
+    <h3 class="">Người bạn đang tìm</h3>
+    <form action="#" method="post">
+        <div class="row">
+            <div class="form-group">
+                <label for="">Tuổi từ</label>
+                <label class="checkbox-inline col-md-2">
+                    <input type="checkbox" id="inlineCheckbox1" value="option1"> Bạn nam
+                </label>
+                <label class="checkbox-inline  col-md-2">
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> Bạn nữ
+                </label>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="">Tuổi từ</label>
+                    <select class="form-control  col-md-2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <select class="form-control  col-md-2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </form>
+</div>*@
+
+<style>
+    .con-search {
+        padding: 30px;
+        padding-bottom: 0px;
+        border-bottom: #a2a1a2 dotted 1px;
+    }
+
+        .con-search > h3 {
+            color: darkblue;
+        }
+
+        .con-search form {
+            margin-top: 15px;
+        }
+</style>
+
+
+@* SEARCH *@
+<form class="form-horizontal" action="@Url.Action("Index","Search")" method="post" role="form">
+    <fieldset class="abc">
+
+        <div class="form-group col-md-12">
+            <label class="col-md-12 control-label" for="location" style="text-align:center ; font-family :Arial; font-size :35px ; color:#3c8dbc;">Tìm kiếm</label>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label" for="location">Tên: </label>
+            <div class="col-md-8">
+                <input id="TextSearch" name="TextSearch" type="text" placeholder="Tên" class="form-control input-md">
+            </div>
+        </div>
+        <!-- Select Basic -->
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label" for="inlineRadio2">Giới tính: </label>
+            <div class="col-md-8">
+                <label class="radio-inline">
+                    <input type="radio" checked="checked" name="Gender" id="inlineRadio1" value="1"> Nam
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="Gender" id="inlineRadio2" value="0"> Nữ
+                </label>
+            </div>
+        </div>
+        <!-- Select Basic -->
+        <div class="form-group col-md-2">
+            <label class="col-md-4 control-label" for="FormAge">Tuổi từ</label>
+            <div class="col-md-8">
+                <select class="form-control" name="FormAge" id="FormAge">
+                    @{
+                        for (var i = 18; i < 99; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <!-- Select Basic -->
+        <div class="form-group col-md-2">
+            <label class="col-md-4 control-label" for="price_min">đến</label>
+            <div class="col-md-8">
+                <select class="form-control" name="ToAge" id="ToAge">
+                    @{
+                        for (var i = 18; i < 99; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <!-- Select Basic -->
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label" for="price_min">Thành Phố</label>
+            <div class="col-md-8">
+                <select id="price_min" name="price_min" class="form-control">
+
+                    <option value="Hanoi">Hà Nội</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label" for="price_min">Tôn giáo</label>
+            <div class="col-md-8">
+                <select id="price_min" name="price_min" class="form-control">
+
+                    <option value="phatgiao">Phật Giáo</option>
+
+                </select>
+            </div>
+        </div>
+        <!-- Button -->
+        <div class="form-group col-md-4">
+            <label class="col-md-12 control-label" for="submit"></label>
+            <div class="col-md-12">
+                <button id="submit" name="submit" class="btn btn-primary col-md-12">Search</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+@* --------- *@
+
+<div class="w3layouts_featured-profiles">
+    <div class="container">
+        <!-- slider -->
+        <div class="agile_featured-profiles">
+            <h2>Những thành viên mới</h2>
+            <ul>
+                <li>
+                    @foreach (var item in Model.UserDetails)
+                    {
+                        <div class="col-md-3 biseller-column">
+                            <a data-toggle="modal" href="@Url.Action("Login", "Account" )" data-target="#myModal">
+                                <div class="profile-image">
+                                    <img src="~/Images/Uploads/@item.AvatarUrl" style="height: 255px" class="img-responsive" alt="profile image">
+                                    <div class="agile-overlay">
+                                        <h4>@item.FullName</h4>
+                                        <ul>
+                                            <li><span>Giới tính</span>: @item.Gender</li>
+                                            <li><span>Thành phố</span>: @item.City</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- //slider -->
+</div>
+
+<!-- //featured profiles -->
+<!-- Assisted Service -->
+<div class="agile-assisted-service text-center">
+    <h4>Hỗ trợ người dùng</h4>
+    <p>Website của chúng tôi đã giúp hàng nghìn thành viên tìm được đối tác cuộc sống của họ.</p>
+    <a href="assisted_services.html">Xem chi tiết</a>
+</div>
+<!-- //Assisted Service -->
+<!-- Get started -->
+<div class="w3layous-story text-center">
+    <div class="container">
+        <h4>Your story is waiting to happen!  <a class="scroll" href="#home">Get started</a></h4>
+    </div>
+</div>
+<!-- //Get started -->

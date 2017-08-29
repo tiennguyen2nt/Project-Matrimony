@@ -1,0 +1,112 @@
+﻿@using DLTT.WIILOVE.Biz.Utils
+@model List<DLTT.WIILOVE.Data.Model.Product>
+@{
+    ViewBag.Title = "Các gói VIP";
+    Layout = "~/Views/Shares/_LayoutUser.cshtml";
+}
+@section Styles {
+
+    <link href="~/Styles/css/pricevip.css" rel="stylesheet" />
+}
+
+<div class="mid" style="padding: 30px 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-24"></div>
+            <div class="col-md-24">
+                <!-- Section Title -->
+                <h2 class="section-title section-title--center">Mua VIP để có <span class="section-title__highlight">những ưu đãi riêng</span></h2>
+                <!-- End of Section Title -->
+                <!-- Section Subtitle -->
+                <p class="section-subtitle section-subtitle--center">Những gói sản phẩn có thể giúp cho bạn tìm kiếm được bạn theo  ý muốn</p>
+                <!-- End of Section Subtitle -->
+            </div>
+        </div>
+        <div class="row">
+            @{
+                foreach (var item in Model)
+                {
+                    if (item.Code == Util.MemberVip.Base)
+                    {
+                        <div class="col-md-4 col-sm-16 col-sm-offset-4 col-md-offset-0 fadeInLeft">
+                            <!-- Pricing -->
+                            <div class="pricing">
+                                <h3 class="pricing__title">@item.Name</h3>
+                                <h4 class="pricing__price">@($"{item.Price:0.##}")$</h4>
+                                <ul class="pricing__features">
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span>@item.ExpicyDate Ngày sử dụng.</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span>Xem được thông tin người dùng .</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> Kết bạn không giới hạn.</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> Bảo mật thông tin.</li>
+                                    <li class="pricing__feature pricing__feature--passive">Được hộ trợ tài khản.</li>
+                                    <li class="pricing__feature pricing__feature--passive">Là thành viên VIP.</li>
+                                </ul>
+                                <!-- Button -->
+                                <div class="button button--small button--shadow button--dark">
+                                    <a href="~/Payment/Purchase/@item.Id" class="button__link">Mua ngay</a>
+                                </div>
+                                <!-- End of Button -->
+                            </div>
+                            <!-- End of Pricing -->
+                        </div>
+                    }
+                    if (item.Code == Util.MemberVip.Vip)
+                    {
+                        <div class="col-md-4 col-sm-16 col-sm-offset-4 col-md-offset-0 fadeInUp">
+                            <!-- Pricing -->
+                            <div class="pricing pricing--featured">
+                                <h3 class="pricing__title">@item.Name</h3>
+                                <h4 class="pricing__price">@($"{item.Price:0.##}")$</h4>
+                                <ul class="pricing__features">
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> @item.ExpicyDate Ngày sử dụng.</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> Xem được thông tin người dùng.</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> Kết bạn không giới hạn</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> Bảo mật thông tin.</li>
+                                    <li class="pricing__feature">Được hộ trợ tài khản.</li>
+                                    <li class="pricing__feature">Là thành viên VIP.</li>
+                                </ul>
+                                <!-- Button -->
+                                <div class="button button--small button--shadow button--dark">
+                                    <a href="~/Payment/Purchase/@item.Id" class="button__link">Mua ngay</a>
+                                </div>
+                                <!-- End of Button -->
+                            </div>
+                            <!-- End of Pricing -->
+                        </div>
+
+                    }
+                    if (item.Code == Util.MemberVip.Pro)
+                    {
+                        <div class="col-md-4 col-sm-16 col-sm-offset-4 col-md-offset-0 fadeInRight">
+                            <!-- Pricing -->
+                            <div class="pricing">
+                                <h3 class="pricing__title">@item.Name</h3>
+                                <h4 class="pricing__price">@($"{item.Price:0.##}")$</h4>
+                                <ul class="pricing__features">
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> @item.ExpicyDate ngày sử dụng.</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> Xem được thông tin người dùng.</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> Kết bạn không giới hạn.</li>
+                                    <li class="pricing__feature"><span class="pricing__highlight"></span> Bảo mật thông tin.</li>
+                                    <li class="pricing__feature">Hỗ trợ tài khoản.</li>
+                                    <li class="pricing__feature">Là thành viên VIP.</li>
+                                </ul>
+                                <!-- Button -->
+                                <div class="button button--small button--shadow button--dark">
+                                    <a href="~/Payment/Purchase/@item.Id" class="button__link">Mua ngay</a>
+                                </div>
+                                <!-- End of Button -->
+                            </div>
+                            <!-- End of Pricing -->
+                        </div>
+
+                    }
+                }
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- footer -->

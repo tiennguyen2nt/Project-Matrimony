@@ -1,0 +1,891 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="wiiloveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="26" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Deleted" Type="int" />
+        </EntityType>
+        <EntityType Name="Deathnote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" />
+          <Property Name="DeathType" Type="int" />
+          <Property Name="DayOfDeath" Type="date" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromId" Type="bigint" />
+          <Property Name="ToId" Type="bigint" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="AvatarURL" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="MessagesDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessagesId" Type="bigint" />
+          <Property Name="SenderId" Type="bigint" />
+          <Property Name="TextMessage" Type="ntext" />
+          <Property Name="SendTime" Type="datetime" />
+          <Property Name="Type" Type="int" />
+          <Property Name="IsRead" Type="bit" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormId" Type="bigint" />
+          <Property Name="ToId" Type="bigint" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Desccription" Type="nvarchar" MaxLength="200" />
+          <Property Name="isRead" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="ExpicyDate" Type="int" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProfileTracking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" />
+          <Property Name="VisiterID" Type="bigint" />
+          <Property Name="VisitSrc" Type="varchar" MaxLength="20" />
+          <Property Name="VisitType" Type="int" />
+          <Property Name="VisitReason" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SystemParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" />
+          <Property Name="FeatureID" Type="int" />
+          <Property Name="Deleted" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Height" Type="float" />
+          <Property Name="AvatarURL" Type="nvarchar" MaxLength="200" />
+          <Property Name="About" Type="ntext" />
+          <Property Name="MaritalStatus" Type="int" />
+          <Property Name="CurrentCountryId" Type="int" />
+          <Property Name="CurrentCityId" Type="int" />
+          <Property Name="MotherTongueId" Type="int" />
+          <Property Name="ReligionId" Type="int" />
+          <Property Name="CasteId" Type="int" />
+          <Property Name="SocialNetworkURL" Type="varchar" MaxLength="204" />
+          <Property Name="WebsiteURL" Type="nvarchar" MaxLength="102" />
+        </EntityType>
+        <EntityType Name="UserOnline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConnectionId" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UserRanking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" />
+          <Property Name="DonatedAmount" Type="float" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="BuyDate" Type="datetime" />
+          <Property Name="ExpiryDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserRelationship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" />
+          <Property Name="TargetId" Type="bigint" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
+        <Association Name="FK_Deathnote_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Deathnote" Type="Self.Deathnote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Deathnote">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesDetail_Messages">
+          <End Role="Messages" Type="Self.Messages" Multiplicity="0..1" />
+          <End Role="MessagesDetail" Type="Self.MessagesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MessagesDetail">
+              <PropertyRef Name="MessagesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileTracking_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="ProfileTracking" Type="Self.ProfileTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProfileTracking">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetails_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRanking_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="UserRanking" Type="Self.UserRanking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRanking">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRanking_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="UserRanking" Type="Self.UserRanking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRanking">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRelationship_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="UserRelationship" Type="Self.UserRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRelationship">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRelationship_Account2">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="UserRelationship" Type="Self.UserRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRelationship">
+              <PropertyRef Name="TargetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wiiloveModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deathnote" EntityType="Self.Deathnote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessagesDetail" EntityType="Self.MessagesDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileTracking" EntityType="Self.ProfileTracking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemParameter" EntityType="Self.SystemParameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserOnline" EntityType="Self.UserOnline" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRanking" EntityType="Self.UserRanking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRelationship" EntityType="Self.UserRelationship" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Deathnote_Account" Association="Self.FK_Deathnote_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Deathnote" EntitySet="Deathnote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Account" Association="Self.FK_History_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesDetail_Messages" Association="Self.FK_MessagesDetail_Messages">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="MessagesDetail" EntitySet="MessagesDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileTracking_Account" Association="Self.FK_ProfileTracking_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="ProfileTracking" EntitySet="ProfileTracking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_Account" Association="Self.FK_UserDetails_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRanking_Account" Association="Self.FK_UserRanking_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="UserRanking" EntitySet="UserRanking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRanking_Product" Association="Self.FK_UserRanking_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="UserRanking" EntitySet="UserRanking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRelationship_Account1" Association="Self.FK_UserRelationship_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="UserRelationship" EntitySet="UserRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRelationship_Account2" Association="Self.FK_UserRelationship_Account2">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="UserRelationship" EntitySet="UserRelationship" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="wiiloveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WiiloveEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="wiiloveModel.Account" />
+          <EntitySet Name="Deathnotes" EntityType="wiiloveModel.Deathnote" />
+          <EntitySet Name="Histories" EntityType="wiiloveModel.History" />
+          <EntitySet Name="Messages" EntityType="wiiloveModel.Message" />
+          <EntitySet Name="MessagesDetails" EntityType="wiiloveModel.MessagesDetail" />
+          <EntitySet Name="Notifications" EntityType="wiiloveModel.Notification" />
+          <EntitySet Name="Products" EntityType="wiiloveModel.Product" />
+          <EntitySet Name="ProfileTrackings" EntityType="wiiloveModel.ProfileTracking" />
+          <EntitySet Name="SystemParameters" EntityType="wiiloveModel.SystemParameter" />
+          <EntitySet Name="UserDetails" EntityType="wiiloveModel.UserDetail" />
+          <EntitySet Name="UserOnlines" EntityType="wiiloveModel.UserOnline" />
+          <EntitySet Name="UserRankings" EntityType="wiiloveModel.UserRanking" />
+          <EntitySet Name="UserRelationships" EntityType="wiiloveModel.UserRelationship" />
+          <AssociationSet Name="FK_Deathnote_Account" Association="wiiloveModel.FK_Deathnote_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Deathnote" EntitySet="Deathnotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Account" Association="wiiloveModel.FK_History_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileTracking_Account" Association="wiiloveModel.FK_ProfileTracking_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="ProfileTracking" EntitySet="ProfileTrackings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_Account" Association="wiiloveModel.FK_UserDetails_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="UserDetail" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRanking_Account" Association="wiiloveModel.FK_UserRanking_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="UserRanking" EntitySet="UserRankings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRelationship_Account1" Association="wiiloveModel.FK_UserRelationship_Account1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="UserRelationship" EntitySet="UserRelationships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRelationship_Account2" Association="wiiloveModel.FK_UserRelationship_Account2">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="UserRelationship" EntitySet="UserRelationships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesDetail_Messages" Association="wiiloveModel.FK_MessagesDetail_Messages">
+            <End Role="Message" EntitySet="Messages" />
+            <End Role="MessagesDetail" EntitySet="MessagesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRanking_Product" Association="wiiloveModel.FK_UserRanking_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="UserRanking" EntitySet="UserRankings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Int32" />
+          <NavigationProperty Name="Deathnotes" Relationship="wiiloveModel.FK_Deathnote_Account" FromRole="Account" ToRole="Deathnote" />
+          <NavigationProperty Name="Histories" Relationship="wiiloveModel.FK_History_Account" FromRole="Account" ToRole="History" />
+          <NavigationProperty Name="ProfileTrackings" Relationship="wiiloveModel.FK_ProfileTracking_Account" FromRole="Account" ToRole="ProfileTracking" />
+          <NavigationProperty Name="UserDetails" Relationship="wiiloveModel.FK_UserDetails_Account" FromRole="Account" ToRole="UserDetail" />
+          <NavigationProperty Name="UserRankings" Relationship="wiiloveModel.FK_UserRanking_Account" FromRole="Account" ToRole="UserRanking" />
+          <NavigationProperty Name="UserRelationships" Relationship="wiiloveModel.FK_UserRelationship_Account1" FromRole="Account" ToRole="UserRelationship" />
+          <NavigationProperty Name="UserRelationships1" Relationship="wiiloveModel.FK_UserRelationship_Account2" FromRole="Account" ToRole="UserRelationship" />
+        </EntityType>
+        <EntityType Name="Deathnote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" />
+          <Property Name="DeathType" Type="Int32" />
+          <Property Name="DayOfDeath" Type="DateTime" Precision="0" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="Reason" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="wiiloveModel.FK_Deathnote_Account" FromRole="Deathnote" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="wiiloveModel.FK_History_Account" FromRole="History" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromId" Type="Int64" />
+          <Property Name="ToId" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AvatarURL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="MessagesDetails" Relationship="wiiloveModel.FK_MessagesDetail_Messages" FromRole="Message" ToRole="MessagesDetail" />
+        </EntityType>
+        <EntityType Name="MessagesDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessagesId" Type="Int64" />
+          <Property Name="SenderId" Type="Int64" />
+          <Property Name="TextMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SendTime" Type="DateTime" Precision="3" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="IsRead" Type="Boolean" />
+          <NavigationProperty Name="Message" Relationship="wiiloveModel.FK_MessagesDetail_Messages" FromRole="MessagesDetail" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormId" Type="Int64" />
+          <Property Name="ToId" Type="Int64" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Desccription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="isRead" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExpicyDate" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserRankings" Relationship="wiiloveModel.FK_UserRanking_Product" FromRole="Product" ToRole="UserRanking" />
+        </EntityType>
+        <EntityType Name="ProfileTracking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" />
+          <Property Name="VisiterID" Type="Int64" />
+          <Property Name="VisitSrc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VisitType" Type="Int32" />
+          <Property Name="VisitReason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="wiiloveModel.FK_ProfileTracking_Account" FromRole="ProfileTracking" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="SystemParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FeatureID" Type="Int32" />
+          <Property Name="Deleted" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Height" Type="Double" />
+          <Property Name="AvatarURL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatus" Type="Int32" />
+          <Property Name="CurrentCountryId" Type="Int32" />
+          <Property Name="CurrentCityId" Type="Int32" />
+          <Property Name="MotherTongueId" Type="Int32" />
+          <Property Name="ReligionId" Type="Int32" />
+          <Property Name="CasteId" Type="Int32" />
+          <Property Name="SocialNetworkURL" Type="String" MaxLength="204" FixedLength="false" Unicode="false" />
+          <Property Name="WebsiteURL" Type="String" MaxLength="102" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="wiiloveModel.FK_UserDetails_Account" FromRole="UserDetail" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="UserOnline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConnectionId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccountId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="UserRanking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" />
+          <Property Name="DonatedAmount" Type="Double" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="BuyDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Account" Relationship="wiiloveModel.FK_UserRanking_Account" FromRole="UserRanking" ToRole="Account" />
+          <NavigationProperty Name="Product" Relationship="wiiloveModel.FK_UserRanking_Product" FromRole="UserRanking" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="UserRelationship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" />
+          <Property Name="TargetId" Type="Int64" />
+          <Property Name="Type" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="wiiloveModel.FK_UserRelationship_Account1" FromRole="UserRelationship" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="wiiloveModel.FK_UserRelationship_Account2" FromRole="UserRelationship" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_Deathnote_Account">
+          <End Type="wiiloveModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="wiiloveModel.Deathnote" Role="Deathnote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Deathnote">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Account">
+          <End Type="wiiloveModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="wiiloveModel.History" Role="History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileTracking_Account">
+          <End Type="wiiloveModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="wiiloveModel.ProfileTracking" Role="ProfileTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProfileTracking">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetails_Account">
+          <End Type="wiiloveModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="wiiloveModel.UserDetail" Role="UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserDetail">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRanking_Account">
+          <End Type="wiiloveModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="wiiloveModel.UserRanking" Role="UserRanking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRanking">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRelationship_Account1">
+          <End Type="wiiloveModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="wiiloveModel.UserRelationship" Role="UserRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRelationship">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRelationship_Account2">
+          <End Type="wiiloveModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="wiiloveModel.UserRelationship" Role="UserRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRelationship">
+              <PropertyRef Name="TargetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesDetail_Messages">
+          <End Type="wiiloveModel.Message" Role="Message" Multiplicity="0..1" />
+          <End Type="wiiloveModel.MessagesDetail" Role="MessagesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MessagesDetail">
+              <PropertyRef Name="MessagesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRanking_Product">
+          <End Type="wiiloveModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="wiiloveModel.UserRanking" Role="UserRanking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRanking">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="wiiloveModelStoreContainer" CdmEntityContainer="WiiloveEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="wiiloveModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deathnotes">
+            <EntityTypeMapping TypeName="wiiloveModel.Deathnote">
+              <MappingFragment StoreEntitySet="Deathnote">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="DayOfDeath" ColumnName="DayOfDeath" />
+                <ScalarProperty Name="DeathType" ColumnName="DeathType" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Histories">
+            <EntityTypeMapping TypeName="wiiloveModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="wiiloveModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AvatarURL" ColumnName="AvatarURL" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ToId" ColumnName="ToId" />
+                <ScalarProperty Name="FromId" ColumnName="FromId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessagesDetails">
+            <EntityTypeMapping TypeName="wiiloveModel.MessagesDetail">
+              <MappingFragment StoreEntitySet="MessagesDetail">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+                <ScalarProperty Name="TextMessage" ColumnName="TextMessage" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="MessagesId" ColumnName="MessagesId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="wiiloveModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="isRead" ColumnName="isRead" />
+                <ScalarProperty Name="Desccription" ColumnName="Desccription" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ToId" ColumnName="ToId" />
+                <ScalarProperty Name="FormId" ColumnName="FormId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="wiiloveModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ExpicyDate" ColumnName="ExpicyDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileTrackings">
+            <EntityTypeMapping TypeName="wiiloveModel.ProfileTracking">
+              <MappingFragment StoreEntitySet="ProfileTracking">
+                <ScalarProperty Name="VisitReason" ColumnName="VisitReason" />
+                <ScalarProperty Name="VisitType" ColumnName="VisitType" />
+                <ScalarProperty Name="VisitSrc" ColumnName="VisitSrc" />
+                <ScalarProperty Name="VisiterID" ColumnName="VisiterID" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters">
+            <EntityTypeMapping TypeName="wiiloveModel.SystemParameter">
+              <MappingFragment StoreEntitySet="SystemParameter">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="wiiloveModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="WebsiteURL" ColumnName="WebsiteURL" />
+                <ScalarProperty Name="SocialNetworkURL" ColumnName="SocialNetworkURL" />
+                <ScalarProperty Name="CasteId" ColumnName="CasteId" />
+                <ScalarProperty Name="ReligionId" ColumnName="ReligionId" />
+                <ScalarProperty Name="MotherTongueId" ColumnName="MotherTongueId" />
+                <ScalarProperty Name="CurrentCityId" ColumnName="CurrentCityId" />
+                <ScalarProperty Name="CurrentCountryId" ColumnName="CurrentCountryId" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="AvatarURL" ColumnName="AvatarURL" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserOnlines">
+            <EntityTypeMapping TypeName="wiiloveModel.UserOnline">
+              <MappingFragment StoreEntitySet="UserOnline">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="ConnectionId" ColumnName="ConnectionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRankings">
+            <EntityTypeMapping TypeName="wiiloveModel.UserRanking">
+              <MappingFragment StoreEntitySet="UserRanking">
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="DonatedAmount" ColumnName="DonatedAmount" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRelationships">
+            <EntityTypeMapping TypeName="wiiloveModel.UserRelationship">
+              <MappingFragment StoreEntitySet="UserRelationship">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="TargetId" ColumnName="TargetId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

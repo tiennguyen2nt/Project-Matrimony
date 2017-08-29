@@ -1,0 +1,103 @@
+﻿@model DLTT.WIILOVE.Models.Login
+
+@{
+    Layout = null;
+}
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<!-- html -->
+<html>
+<!-- head -->
+<head>
+    <title>Đăng nhập Wiilove | Wiilove</title>
+    <link href="~/Styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
+    <link href="~/Styles/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Fontawesome-CSS
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type='text/javascript' src='~/scripts/js/jquery-2.2.3.min.js'></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="~/Styles/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <link href="~/Styles/css/redirectlogin.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Styles/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Styles/css/_all-skins.min.css" rel="stylesheet" />
+    <!--//theme-style-->
+    <!--meta data-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Match Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--//meta data-->
+    <!-- online fonts -->
+    <!-- /online fonts -->
+    <!-- nav smooth scroll -->
+    <!-- //nav smooth scroll -->
+</head>
+<!-- //head -->
+<!-- body -->
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="@Url.Action("Index","Home")" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>L</b>ove</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Wii</b>Love</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-sign-out"> Đăng xuất</i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="wrapper_login">
+        <div class="login-page">
+            <div class="form">
+                <h3 style="margin-bottom: 10px;">Đăng nhập Wiilove</h3>
+                @using (Html.BeginForm("RedirectLogin", "Account"))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="login-form">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <input type="text" id="Username" name="Username" placeholder="Tài khoản" />
+                        <input type="password" id="Password" name="Password" placeholder="Mật khẩu" />
+                        <button>login</button>
+                        <p class="message">
+                            Chưa có tài khoản? <a href="#">Đăng ký ngay</a>
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <footer style="margin: 0 auto">
+        <div class="copy-right">
+            <div class="container">
+                <p>© 2017 Match. All rights reserved | Wiilove</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<!-- //body -->
+</html>
+<!-- //html -->

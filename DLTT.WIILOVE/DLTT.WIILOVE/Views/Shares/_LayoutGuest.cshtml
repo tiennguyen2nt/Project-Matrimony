@@ -1,0 +1,146 @@
+﻿
+<!DOCTYPE html>
+<!-- html -->
+<html>
+<!-- head -->
+<head>
+    <title>@ViewBag.Title | Wiilove - DLTT</title>
+    <link href="~/Styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap-CSS -->
+    <link href="~/Styles/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" /><!-- Fontawesome-CSS -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type='text/javascript' src='~/scripts/js/jquery-2.2.3.min.js'></script>
+    <script src="~/scripts/js/Loading/modernizr.js"></script>
+    <script src="~/scripts/js/Loading/loadImg.js"></script>
+    <script src="~/scripts/js/bootstrapValidator.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="~/Styles/css/menu.css" rel="stylesheet" type="text/css" media="all" /> <!-- menu style --> 
+    <!--theme-style-->
+    <link href="~/Styles/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+
+    <link href="~/Styles/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <!--meta data-->
+    <link href="~/Styles/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Styles/css/_all-skins.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Love and Date, tien nguyen, Duy Long Tien Thuan" />
+    <script type='text/javascript'>
+        
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");
+        });
+      
+    </script>
+   
+    <!-- //nav smooth scroll -->			
+    <!-- Calendar -->
+    <link rel="stylesheet" href="~/Styles/css/jquery-ui.css" />
+    <script src="~/scripts/js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+    </script>
+    <!-- //Calendar -->			
+    <link rel="stylesheet" href="~/Styles/css/intlTelInput.css">
+</head>
+<!-- //head -->
+<!-- body -->
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="se-pre-con"></div>
+    @RenderBody()
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-home" style="padding-top: 30px;">
+            <div class="container">
+                <div class="footer-info w3-agileits-info">
+                    <div class="col-md-4 address-left agileinfo">
+                        <div class="footer-logo header-logo">
+                            <h6>Liên hệ</h6>
+                        </div>
+                        <ul>
+                            <li><i class="fa fa-map-marker"></i> số 8 Tôn Thất Thuyết - Bắc Từ Niêm -HN</li>
+                            <li><i class="fa fa-mobile"></i> 333 222 3333 </li>
+                            <li><i class="fa fa-phone"></i> +222 11 4444 </li>
+                            <li><i class="fa fa-envelope-o"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8 address-right">
+                        <div class="col-md-4 footer-grids">
+                            <h3>Công ty</h3>
+                            <ul>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="feedback.html">Feedback</a></li>
+                                <li><a href="help.html">Help</a></li>
+                                <li><a href="tips.html">Safety Tips</a></li>
+                                <li><a href="typo.html">Typography</a></li>
+                                <li><a href="icons.html">Icons Page</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 footer-grids">
+                            <h3>Liên kết nhanh</h3>
+                            <ul>
+                                <li><a href="terms.html">Terms of use</a></li>
+                                <li><a href="privacy_policy.html">Privacy Policy</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="sitemap.html">Sitemap</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 footer-grids">
+                            <h3>Follow Us on</h3>
+                            <section class="social">
+                                <ul>
+                                    <li><a class="icon fb" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="icon tw" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="icon gp" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </section>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right">
+            <div class="container">
+                <p>
+                    © 2017 Match. All rights reserved | Design by <a href="http://team01.com"> Team 01.</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    <!-- menu js aim -->
+    <script src="~/scripts/js/jquery.menu-aim.js"> </script>
+    <script src="~/scripts/js/main.js"></script> <!-- Resource jQuery -->
+    <!-- //menu js aim -->
+    <!-- for bootstrap working -->
+    <script src="~/scripts/js/bootstrap.js"></script>
+    <!-- //for bootstrap working -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                  containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+             };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    <!-- for smooth scrolling -->
+    <script type="text/javascript" src="~/scripts/js/move-top.js"></script>
+
+</body>
+<!-- //body -->
+</html>
+<!-- //html -->

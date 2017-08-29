@@ -1,0 +1,340 @@
+﻿@using DLTT.WIILOVE.Biz.Utils
+@using DLTT.WIILOVE.Data.Model
+@model List<DLTT.WIILOVE.Data.Model.Message>
+@{
+    ViewBag.Title = "Tin nhắn";
+    Layout = "~/Views/Shares/_LayoutUser.cshtml";
+}
+<div class="main_section">
+    <div class="container">
+        <div class="chat_container">
+            <div class="col-sm-3 chat_sidebar">
+                <div class="row">
+                    <div class="dropdown all_conversation">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-weixin" aria-hidden="true"></i>
+                            All Conversations
+                            <span class="caret pull-right"></span>
+                        </button>
+                       
+                    </div>
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="search-query form-control" id="contact-list-search" placeholder="Search | Messenger" />
+                            <button class="btn btn-danger" type="button">
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="member_list">
+                        <ul class="list-group" id="contact-list">
+
+                            @{
+
+                                if (@Model != null)
+                                {
+                                    foreach (var item in @Model)
+                                    {
+                                        <a href="~/Messeger/t/@item.ID" id="Message-box-@item.ID">
+                                            <li class="list-group-item" id="member_list_@item.ID">
+                                                <div class="col-xs-12 col-sm-3">
+                                                    <img src="~/Images/Uploads/@item.AvatarURL" alt="@item.Name" class="img-circle" />
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <span class="name">@item.Name</span><br />
+                                                    @{
+
+                                                        <p id="member_last_Mess_@item.ID" style="color: #333;">@item.LastMessage</p>
+
+                                                    }
+                                                </div>
+                                                @{
+                                                    if (item.CountUnRead > 0)
+                                                    {
+                                                        <span class="label label-danger" id="member_notif_@item.ID" style="height: 19px;">
+                                                            @{
+                                                                var nice = "9+";
+                                                                if (item.CountUnRead > 9)
+                                                                {
+                                                                   @nice
+                                                                }
+                                                                else
+                                                                {
+                                                                    @item.CountUnRead
+                                                                }
+                                                            }
+                                                        </span>
+                                                                }
+                                                }
+
+                                                <div class="clearfix"></div>
+                                            </li>
+                                        </a>
+                                                                    }
+                                                                }
+                            }
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--chat_sidebar-->
+
+
+            <div class="col-sm-6 message_section">
+                <div class="row">
+                    <div class="new_message_head">
+                        <div class="col-sm-4 pull-left" style="text-align: left; "><button><i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i> New Message</button></div>
+                        <div class="col-sm-4 current-chat" style="text-align: center;"><button><i class="glyphicon glyphicon-user" aria-hidden="true"></i> @ViewBag.Messages.Name</button></div>
+                        <div class="col-sm-4 pull-right" style="text-align: right;">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-cogs" aria-hidden="true"></i>  Setting
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--new_message_head-->
+
+                <div class="chat_area">
+                    <ul class="list-unstyled" id="MessageChat_@ViewBag.Messages.MessageId">
+                        <li style="text-align: center;">
+                            <div class="">
+                                <p>Hãy cùng trò chuyện nào....</p>
+                            </div>
+                        </li>
+                        @{
+                            var messagesDetails = ViewBag.Messages.MessagesDetails as List<MessagesDetail>;
+                            if (messagesDetails != null)
+                            {
+                                foreach (var item in messagesDetails)
+                                {
+                                    if (item.SenderId == ViewBag.View.AccountId)
+                                    {
+                                        <li class="left clearfix admin_chat">
+                                            <span class="chat-img1 pull-right">
+                                                <img src="~/Images/Uploads/@Util.GetAvatarById(item.SenderId)" alt="Avatar" class="img-circle">
+                                            </span>
+                                            <div class="chat-body1 clearfix">
+                                                <p>@item.TextMessage</p>
+                                                <div class="chat_time pull-left">@Util.TimeSend(item.SendTime)</div>
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="left clearfix">
+                                            <span class="chat-img1 pull-left">
+                                                <img src="~/Images/Uploads/@Util.GetAvatarById(item.SenderId)" alt="Avatar" class="img-circle">
+                                            </span>
+                                            <div class="chat-body1 clearfix">
+                                                <p>@item.TextMessage</p>
+                                                <div class="chat_time pull-right">@Util.TimeSend(item.SendTime)</div>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+
+                            }
+
+                        }
+                    </ul>
+                </div><!--chat_area-->
+                <div class="message_write">
+                    <textarea id="textMessage" class="form-control" placeholder="type a message"></textarea>
+                    <div class="clearfix"></div>
+                    <div class="chat_bottom">
+                        <button id="btnSend" class="pull-right btn btn-success">
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div> <!--message_section-->
+        <!-- right-site// -->
+        <div class="col-sm-3 chat_sidebar">
+            <div class="row">
+                <div class="member_list">
+                    <div class="current-chatting">
+                        <div class="col-sm-4">
+                            <img src="~/Images/Uploads/@ViewBag.Messages.AvatarUrl" alt="@ViewBag.Messages.Name" class="img-responsive img-circle" style="width: 50px;height: 50px;" />
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="name">@ViewBag.Messages.Name</span><br />
+
+                        </div>
+                        <div class="col-sm-2" style="">
+                            <div class="dropdown">
+                                <a href="#"><i class="glyphicon glyphicon-cog" aria-hidden="true"></i></a>
+                                <div class="dropdown-content">
+                                    <ul style="list-style-type: none;">
+                                        <li>Rename</li>
+                                        <li>Archive</li>
+                                        <li>Delete</li>
+                                        <li>Block Message</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="customize-conversation">
+                        <div class="option">
+                            <div class="col-sm-10">
+                                Options
+                            </div>
+                            <div class="col-sm-2"><i class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="clearfix"> </div>
+                        <ul class="lst-option">
+                            <!-- table-nav -->
+                            <li class="">
+                                <a href="#">
+                                    <div class="icon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <div class="text">Search in Conversation</div>
+                                </a>
+                            </li>
+                            <!-- end table-nav -->
+                            <li class="">
+                                <a href="#">
+                                    <div class="icon"><i class="glyphicon glyphicon-pencil"></i></div>
+                                    <div class="text"> Edit Nicknames</div>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="#" target="_blank">
+                                    <div class="icon"><i class="glyphicon glyphicon-dashboard"></i></div>
+                                    <div class="text"> Change Colors</div>
+
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="#">
+                                    <div class="icon"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
+                                    <div class="text">Change Amoji</div>
+
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="#">
+                                    <div class="icon"><i class="fa fa-bell-o" aria-hidden="true"></i></div>
+                                    <div class="text">Notifications</div>
+
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3  redirect-profile" style="border-bottom: 1px solid gainsboro;
+                                                                                                                                                                                                                                                                                                   border-top: 1px solid gainsboro;">
+            <div class="txtwiilove" style="margin-bottom: 5px">Wiilove Profile</div>
+            <a href="@ViewBag.Messages.ProfileURL">@ViewBag.Messages.ProfileURL</a>
+        </div>
+        <div class="col-sm-3 share-photo" style="margin-top:20px;">
+            <div class="col-sm-10">
+                Share Photos
+            </div>
+            <div class="col-sm-2"><i class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></i></div>
+        </div>
+        <!-- // -->
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $.connection.hub.start().done(function () {
+            chat.server.connect(AccountId);
+        });
+    </script>
+    <script src="~/scripts/SignalR/NotifitionFunction.js"></script>
+    <script>
+        $(document).ready(function () {
+            var $chat_area = $('.chat_area');
+            return $chat_area.animate({ scrollTop: $chat_area.prop('scrollHeight') }, 800);
+        });
+        $('#btnSend').click(function () {
+            var textMess = $('#textMessage').val();
+            var messId = '@ViewBag.Messages.MessageId';
+            var SendId = '@ViewBag.Messages.SendId';
+            chat.server.sendMesseger(messId, AccountId, SendId, textMess);
+        });
+
+        chat.client.sendMessage = function (mess) {
+            var code = $('<li class="left clearfix admin_chat">' +
+                ' <span class="chat-img1 pull-right">' +
+                '<img src="/Images/Uploads/' + mess.AvatarUrl + '" alt="Avatar" class="img-circle">' +
+                '</span>' +
+                '<div class="chat-body1 clearfix">' +
+                '<p>' + mess.TextMessage + '</p>' +
+                '<div class="chat_time pull-left">' + mess.TimeSend + '</div>' +
+                '</div>' +
+                '</li>');
+            $('#MessageChat_' + mess.MessagesId).append(code);
+            $('#textMessage').val('');
+            var $chat_area = $('.chat_area');
+            return $chat_area.animate({ scrollTop: $chat_area.prop('scrollHeight') }, 300);
+        }
+
+        chat.client.getMessage = function (mess) {
+
+
+            var code = $('<li class="left clearfix">' +
+                ' <span class="chat-img1 pull-left">' +
+                '<img src="/Images/Uploads/' + mess.AvatarUrl + '" alt="Avatar" class="img-circle">' +
+                '</span>' +
+                '<div class="chat-body1 clearfix">' +
+                '<p>' + mess.TextMessage + '</p>' +
+                '<div class="chat_time pull-right">' + mess.TimeSend + '</div>' +
+                '</div>' +
+                '</li>');
+            if ($('#MessageChat_' + mess.MessagesId).length > 0) {
+                $('#MessageChat_' + mess.MessagesId).append(code);
+            }
+
+            $('#member_list_' + mess.MessagesId +' div p').text(mess.TextMessage);
+            
+            if ($('#member_notif_' + mess.MessagesId).length) {
+                var numStr = $('#member_notif_' + mess.MessagesId).text();
+                var num = parseInt(numStr) + 1;
+                var text = '';
+                if (num > 9) {
+                    text = "9+";
+                } else {
+                    text = num + '';
+                }
+                $('#member_notif_' + mess.MessagesId ).text(text);
+            } else {
+                $('#member_list_' + mess.MessagesId).append(
+                    '<span class="label label-danger" id="member_notif_' + mess.MessagesId + '" style="height: 19px;"> <span>1</span></span>');
+            }
+
+            var $chat_area = $('.chat_area');
+            return $chat_area.animate({ scrollTop: $chat_area.prop('scrollHeight') }, 300);
+        }
+        $('#textMessage').keyup(function (e) {
+            if (e.which === 13) {
+                var textMess = $('#textMessage').val();
+                var messId = '@ViewBag.Messages.MessageId';
+                var SendId = '@ViewBag.Messages.SendId';
+                chat.server.sendMesseger(messId, AccountId, SendId, textMess);
+            }
+        });
+        $('#textMessage').click(function() {
+            var messId = '@ViewBag.Messages.MessageId';
+            chat.server.isReadMessage(messId, AccountId);
+            $('#member_notif_' + messId).remove();
+        });
+    </script>
+}
+
+

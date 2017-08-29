@@ -1,0 +1,368 @@
+﻿@using DLTT.WIILOVE.Biz.Utils
+@model DLTT.WIILOVE.Data.Model.UserDetail
+@{
+    ViewBag.Title = "Chỉnh sửa thông tin cá nhân";
+    Layout = "~/Views/Shares/_LayoutUser.cshtml";
+}
+<style>
+    .control-label1 {
+        color: black;
+    }
+
+    .w3_details {
+        margin-top: 0;
+    }
+</style>
+<div style="background-color: #E9EBEE;">
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <div class="profile-image" style="width: 100%; height: 255px">
+                        <img src="~/Images/Uploads/@Html.DisplayFor(model => Model.AvatarURL)" id="avatarProfile" class="img-responsive" alt="profile image" />
+                        @{
+                            if (Model.isFriend == Util.IsFriend.IsMe)
+                            {
+                                <div class="agile-overlay" style="opacity:0.6;
+                                                                                                                                                                                             background-color:black;">
+                                    <a href="">
+                                        <div class="image-upload">
+                                            <label for="file-input">
+                                                <i class="fa fa-camera fa-2x iconAvt" aria-hidden="true" style=""></i>
+                                                <label class="lbAvt">Cập nhập ảnh đại diện</label>
+                                            </label>
+
+                                            <input id="file-input" type="file" name="file-input" style="width: 100%; height: 100%;" />
+
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        @Html.DisplayFor(model => Model.LastName) @Html.DisplayFor(model => Model.MiddleName) @Html.DisplayFor(model => Model.FirstName)
+                    </div>
+                    <div class="profile-usertitle-job">
+                        @Html.DisplayFor(model => Model.WebsiteURL)
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+
+                        <!-- table-nav -->
+                        <li >
+                            <a href="@Url.Action("Index",new {Id = Model.AccountId})">
+                                <i class="glyphicon glyphicon-home"></i>
+                                Chi tiết
+                            </a>
+                        </li>
+                        <!-- end table-nav -->
+                        <li class="active">
+                            <a href="@Url.Action("Edit",new {Id = Model.AccountId})">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Chỉnh sửa thông tin
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class="glyphicon glyphicon-ok"></i>
+                                Tasks
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-flag"></i>
+                                Help
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+                <form action="@Url.Action("Edit")" method="post"  >
+                <div class="profile_w3layouts_details">
+                    <div class="agileits_aboutme">
+                        <h4>Chỉnh sửa thông tin cá nhân</h4>
+                        <h5>Giới thiệu:</h5>
+                        <textarea class="form-control" rows="5" id="About" name="About">@Model.About</textarea>
+                       
+                        <br />
+                        <h5>Chi tiết:</h5>
+                        <div class="form_but1">
+                            <label class="col-sm-3 control-label1" for="Relation">Ngày sinh : </label>
+                            <div class="col-sm-9 w3_details">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <select class="form-control" id="Day" name="Day">
+                                            @for (var i = 1; i < 32; i++)
+                                            {
+                                                var selected = "selected='selected'";
+                                                if (Model.DateOfBirth == null || Model.DateOfBirth.Value.Day != i)
+                                                {
+                                                    selected = "";
+
+                                                }
+                                                <option @selected value="@i">@i</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <select class="form-control" id="Month" name="Month">
+                                            @for (var i = 1; i < 13; i++)
+                                            {
+                                                var selected = "selected='selected'";
+                                                if (Model.DateOfBirth == null || Model.DateOfBirth.Value.Month != i)
+                                                {
+                                                    selected = "";
+
+                                                }
+                                                <option @selected value="@i">Tháng @i</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select class="form-control" name="Year" id="Year">
+                                            @{
+                                                var year = DateTime.Now.Year - 18;
+                                            }
+                                            @for (var i = year; i > year - 100; i--)
+                                            {
+                                                var selected = "selected='selected'";
+                                                if (Model.DateOfBirth == null || Model.DateOfBirth.Value.Year != i)
+                                                {
+                                                    selected = "";
+
+                                                }
+                                                <option @selected value="@i">@i</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="form_but1">
+                            <label class="col-sm-3 control-label1" for="Relation">Giới tính: </label>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>
+                                        @if (Model.Gender == 1)
+                                        {
+                                            <input type="radio" name="Gender" id="optionsRadios1" value="1" checked="checked">
+
+                                        }
+                                        else
+                                        {
+                                            <input type="radio" name="Gender" id="optionsRadios1" value="1">
+                                        }
+                                        Nam
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>
+                                        @if (Model.Gender == 0)
+                                        {
+                                            <input type="radio" name="Gender" id="optionsRadios1" value="0" checked="checked">
+
+                                        }
+                                        else
+                                        {
+                                            <input type="radio" name="Gender" id="optionsRadios1" value="0">
+                                        } Nữ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_but1">
+                            <label class="col-sm-3 control-label1" for="Weight">Cân nặng (kg): </label>
+                            <div class="col-sm-2 w3_details">
+                                <input type="number" min="20" max="300" class="form-control" name="Weight" id="Weight" value="@Model.Weight"> 
+                            </div>
+                            <div class="clearfix"> </div> 
+                        </div>
+                        <div class="form_but1">
+                            <label class="col-sm-3 control-label1" for="Height">Chiều cao (cm): </label>
+                            <div class="col-sm-2 w3_details">
+                                <input type="number" min="50" max="300" class="form-control" name="Height" id="Height" value="@Model.Height"> 
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="form_but1">
+                            <label class="col-sm-3 control-label1" for="CurrentCountryId">Quốc gia: </label>
+                            <div class="col-sm-3 w3_details">
+                                <select class="form-control" id="CurrentCountryId" name="CurrentCountryId">
+                                    @{
+                                        <option value="">-- Chọn --</option>
+                                        foreach (var item in Util.GetListSystemParameters(Util.Feature.Country))
+                                        {
+                                            var selected = "selected='selected'";
+                                            if (Model.CurrentCountryId == null || Model.CurrentCountryId != item.Id)
+                                            {
+                                                selected = "";
+
+                                            }
+                                            <option @selected value="@item.Id">@item.Name</option>       
+                                        }
+                                    }
+                                   
+                                </select>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="form_but1">
+                            <label class="col-sm-3 control-label1" for="CurrentCityId">Thành phố : </label>
+                            <div class="col-sm-3 w3_details">
+                                <select class="form-control" id="CurrentCityId" name="CurrentCityId">
+                                    @{
+                                        <option value="">-- Chọn --</option>
+                                        foreach (var item in Util.GetListSystemParameters(Util.Feature.City))
+                                        {
+                                            var selected = "selected='selected'";
+                                            if (Model.CurrentCityId == null || Model.CurrentCityId != item.Id)
+                                            {
+                                                selected = "";
+
+                                            }
+                                            <option @selected value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                   
+                                </select>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="form_but1">
+                            <label class="col-sm-3 control-label1" for="MotherTongueId">Ngôn ngữ : </label>
+                            <div class="col-sm-3 w3_details">
+                                <select class="form-control" id="MotherTongueId" name="MotherTongueId">
+                                    @{
+                                        <option value="">-- Chọn --</option>
+                                        foreach (var item in Util.GetListSystemParameters(Util.Feature.Language))
+                                        {
+                                            var selected = "selected='selected'";
+                                            if (Model.MotherTongueId == null || Model.MotherTongueId != item.Id)
+                                            {
+                                                selected = "";
+
+                                            }
+                                            <option @selected value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                   
+                                </select>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="form_but1">
+                            <label class="col-sm-3 control-label1" for="ReligionId">Tôn giáo : </label>
+                            <div class="col-sm-3 w3_details">
+                                <select class="form-control" id="ReligionId" name="ReligionId">
+                                    @{
+                                        <option value="">-- Chọn --</option>
+                                        foreach (var item in Util.GetListSystemParameters(Util.Feature.Religion))
+                                        {
+                                            var selected = "selected='selected'";
+                                            if (Model.ReligionId == null || Model.ReligionId != item.Id)
+                                            {
+                                                selected = "";
+
+                                            }
+                                            <option @selected value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                   
+                                </select>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="form_but1">
+                            <hr/>
+                            <button type="submit" class="btn btn-primary col-md-offset-10" >Lưu</button>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+</div>
+@section scripts {
+    <script src="~/scripts/SignalR/NotifitionHub.js"></script>
+    <script src="~/scripts/SignalR/NotifitionFunction.js"></script>
+}
+<script>
+
+    $("#file-input").change(function () {
+        var data = new FormData();
+        var files = $("#file-input").get(0).files;
+        if (files.length > 0) {
+            data.append("MyImages", files[0]);
+            data.append("Id",@Model.Id);
+        }
+
+        $.ajax({
+            url: "/Upload/UploadFile",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: data,
+            success: function (response) {
+                //code after success
+                if(response != '')
+                    $("#avatarProfile").attr('src', '/Images/Uploads/' + response);
+            },
+            error: function (er) {
+                alert(er);
+            }
+
+        });
+    });
+
+
+    var addI = '1';
+    $('#addFriendProfile').click(function () {
+        var id = $('#idFriend').val();
+        var currentId = '@ViewBag.view.AccountId';
+        if (addI === '1') {
+            $('#addFriendProfile').text("Hủy yêu cầu");
+            chat.server.addFriend(id, currentId);
+
+            addI = '2';
+        } else {
+            $('#addFriendProfile').text("Thêm bạn");
+            chat.server.unConfirm(id, currentId);
+            addI = '1';
+        }
+    });
+
+    $('#ConfirmFriend').click(function () {
+        $('#ConfirmFriend').remove();
+        var id = $('#idFriend').val();
+        var currentId = '@ViewBag.view.AccountId';
+        chat.server.confirmFriend(id, currentId);
+    });
+
+
+</script>

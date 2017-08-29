@@ -1,0 +1,86 @@
+﻿@model List<DLTT.WIILOVE.Data.Model.Param.UserDeatilBase>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shares/_LayoutGuest.cshtml";
+}
+
+<div class="backgroud">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-9 margin-top-10">
+                <div class="list-s-wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="title">
+                                        <p>Có @Model.Count kết quả tìm kiếm phù hợp</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-list-s">
+                                @{
+                                    foreach (var item in @Model)
+                                    {
+                               
+                                        <div class="item-list">
+                                            <div class=" row">
+                                                <div class="col-md-2 col-xs-12 borders">
+                                                    <div class="box-image-list-s">
+                                                        <a href="/Profile/Index/@item.AccountId"> <img src="~/Images/Uploads/@item.AvatarUrl" style="height: 110px; width: 110px;"/></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-xs-12  borders">
+                                                    <a href="/Profile/Index/@item.AccountId"><span class="name-s">@item.FullName</span></a>
+                                                    <p id="view" class="text-view">@item.City</p>
+                                                    <p class="text-view">@item.Gender</p>
+                                                    @{
+                                                        if (item.Age != null)
+                                                        {
+                                                            <p class="text-view">Tuổi: @item.Age</p>
+                                                        }
+                                                    }
+                                                </div>
+                                                @*<div class="col-md-4 col-xs-12 ">
+                                            <div class="button">
+                                                <a class="btn color">Follow</a>
+                                                <a class="btn colors">Gửi tin nhắn</a>
+                                            </div>
+                                        </div>*@
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 margin-top-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        @*<div class="facebook">
+                            <h4 class="title-fb">Tìm kiếm</h4>
+
+                            <img src="images/fb.png" width="40" height="40" style="margin-right:10px;" />Tìm bạn bè từ facebook
+                            <p class="font-siz">Kết nối với tài khoản và lựa chọn bạn bè mà bạn muốn thêm.</p>
+                            <form id="signin" action="#" method="post">
+
+                                <input type="text" name="User Name" placeholder="Username" required="" class="ipfb">
+
+                                <input type="password" name="Password" placeholder="Password" required="" style="margin-top:10px" class="ipfb">
+
+                                <div class="clearfix"> </div>
+
+                                <input type="submit" name="submit" value="Kết nối với facebook" class="smfb">
+
+                            </form>
+
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

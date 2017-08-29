@@ -1,0 +1,119 @@
+﻿@using DLTT.WIILOVE.Biz.Utils
+@model DLTT.WIILOVE.Data.Model.Product
+@{
+    ViewBag.Title = "Purchase";
+    Layout = "~/Views/Shares/_LayoutUser.cshtml";
+}
+@section Styles
+{
+    <link href="~/Styles/css/aprice.css" rel="stylesheet" />
+}
+<div class="mid" style="padding: 30px 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-16 col-sm-offset-4 col-md-offset-0 fadeInLeft">
+                <!-- Pricing -->
+                <div class="pricing">
+                    <h3 class="pricing__title">@Model.Name</h3>
+                    <ul class="pricing__features">
+                        <li class="pricing__feature"><span class="pricing__highlight"></span>@Model.ExpicyDate Ngày sử dụng.</li>
+                        <li class="pricing__feature"><span class="pricing__highlight"></span>Xem được thông tin người dùng .</li>
+                        <li class="pricing__feature"><span class="pricing__highlight"></span> Kết bạn không giới hạn.</li>
+                        <li class="pricing__feature"><span class="pricing__highlight"></span> Bảo mật thông tin.</li>
+                        @{
+                            if (Model.Code == Util.MemberVip.Base)
+                            {
+                                <li class="pricing__feature pricing__feature--passive">Được hộ trợ tài khản.</li>
+                                <li class="pricing__feature pricing__feature--passive">Là thành viên VIP.</li>
+                            }
+                            else if (Model.Code == Util.MemberVip.Vip || Model.Code == Util.MemberVip.Pro)
+                            {
+                                <li class="pricing__feature"><span class="pricing__highlight"></span> Được hộ trợ tài khản.</li>
+                                <li class="pricing__feature"><span class="pricing__highlight"></span> Là thành viên VIP.</li>
+
+                            }
+                        }
+
+                    </ul>
+                    <!-- Button -->
+                    <!--  <div class="button button--small button--shadow button--dark"><a href="" class="button__link">Mua ngay</a></div> -->
+                    <!-- End of Button -->
+                </div>
+                <!-- End of Pricing -->
+            </div>
+
+            <div class="col-xs-12 col-md-8">
+                <div class="container">
+                    <div class="row">
+                        @{
+                            if (Model.Code == Util.MemberVip.Base)
+                            {
+                                <h1 class="item-box">Gói @Model.Name cho người dùng mới bắt đầu dùng.</h1>
+
+                            }
+                            else if (Model.Code == Util.MemberVip.Vip)
+                            {
+                                <h1 class="item-box">Gói @Model.Name được nhiều người mua nhất.</h1>
+
+                            }
+                            else if (Model.Code == Util.MemberVip.Pro)
+                            {
+                                <h1 class="item-box">Gói @Model.Name tiết kiệm nhất với mọi người.</h1>
+
+                            }
+                        }
+                        <h6 class="item-text"> Gói này được đứng thứ nhất cho người dùng mới bắt đầu dùng dịch vụ của chúng tôi <a href="#">Top 2 sản phẩn được bán chạy nhất tháng này.</a></h6>
+                        <span>
+                            <i class="fa fa-star" style="font-size: 20px; color: #ff5722;"></i>
+                            <i class="fa fa-star" style="font-size: 20px; color: #ff5722;"></i>
+                            <i class="fa fa-star" style="font-size: 20px; color: #ff5722;"></i>
+                            <i class="fa fa-star" style="font-size: 20px; color: #ff5722;"></i>
+                            <i class="fa fa-star" style="font-size: 20px; color: #ff5722;"> 5 trên 5 </i>
+                            <p class="commet">(10 bình luận)</p>
+                            <p class="item-price">
+                                <span class="price-label">Giá:</span>
+                                <span class="span-price">@($"{Model.Price:0.##}")$</span>
+                                <span>(Đã có VAT)</span>
+                            </p>
+                            <p class="item-price">
+                                <span class="price-label">Bạn có:</span>
+                                <span class="span-price">@($"{ViewBag.Money.DonatedAmount ?? 0.00:0.##}")$</span>
+                                <span> trong tài khoản</span>
+                            </p>
+                            <p class="item-price">
+                                <span class="price-label">Bạn còn:</span>
+                                <span>@($"{ViewBag.Money.DonatedAmount ?? 0.00:0.##}") - @($"{Model.Price:0.##}") =</span>
+                                @{
+                                    var result = 0.00;
+                                    if (ViewBag.Money.DonatedAmount == null)
+                                    {
+                                        result -= Model.Price ?? 0;
+                                    }
+                                    else
+                                    {
+                                        result = ViewBag.Money.DonatedAmount - Model.Price;
+                                    }
+                                }
+                                <span class="span-price">@($"{result:0.##}")$</span>
+
+                            </p>
+                            <br />
+                            @{
+                                if (ViewBag.Money.DonatedAmount == null || ViewBag.Money.DonatedAmount <= 0 || (ViewBag.Money.DonatedAmount - Model.Price) <= 0)
+                                {
+                                    <a href="~/Donate/Index/@Model.Id" class="button__link">Nạp tiền</a>
+                                }
+                                else
+                                {
+                                    <a href="~/Payment/Buy/@Model.Id" onclick="return confirm('Bạn có chắc chắn mua gói VIP này?')" class="button__link">Thanh toán</a>
+                                }
+                            }
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

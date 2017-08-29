@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "BuySuccessful";
+    Layout = "~/Views/Shares/_LayoutUser.cshtml";
+}
+@section Styles
+{
+    <link href="~/Styles/css/profile-vip.css" rel="stylesheet" />
+}
+<div class="mid" style="padding: 200px 0">
+    <h4 class="item-acc">Bạn đã mua thành công </h4>
+    <h5 class="item-acc">Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi <i class="fa fa-heart " style="font-size:15px;color:red;"></i></h5>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="@Url.Action("NewFeed", "Home")"><p class="back-link">Quay lại trang chủ</p></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="fixed"></div>
+

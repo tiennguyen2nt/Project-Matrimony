@@ -1,0 +1,45 @@
+﻿@model DLTT.WIILOVE.Models.Login
+@{
+    Layout = null;
+}
+
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Đăng nhập</h4>
+    </div>
+    <div class="modal-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="login-w3ls">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <label>Tài khoản </label>
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                <label>Mật khẩu</label>
+                <input type="password" class="form-control" name="Password" required="">	
+                <div class="w3ls-loginr">
+                    @Html.EditorFor(model => model.Remember, new { @id = "brand" })
+                    <span> Nhớ đăng nhập ?</span>
+                    <a href="#">Quên mật khẩu ?</a>
+                </div>
+                <div class="clearfix"> </div>
+                <input type="submit" name="submit" value="Đăng nhập">
+                <p style="text-align:center; margin: 5px 0 10px;">Chưa có tài khoản?<a href="@Url.Action("Register","Account")"> Đăng ký ngay</a></p>
+                <div class="clearfix"> </div>
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="#"><span class="icons"><i class="fa fa-facebook" aria-hidden="true"></i></span><span class="text">Facebook</span></a></li>
+                        <li class="twt"><a href="#"><span class="icons"><i class="fa fa-twitter" aria-hidden="true"></i></span><span class="text">Twitter</span></a></li>
+                    </ul>
+                    <div class="clearfix"> </div>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
